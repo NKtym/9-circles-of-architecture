@@ -4,11 +4,11 @@ void
 printFlags (void)
 {
   mt_gotoXY (20, 200);
-  if (flag & 0x10)
+  if (flag & 0x1)
     printf ("П ");
   else
     printf ("_ ");
-  if (flag & 0x8)
+  if (flag & 0x2)
     printf ("0 ");
   else
     printf ("_ ");
@@ -16,13 +16,13 @@ printFlags (void)
     printf ("М ");
   else
     printf ("_ ");
-  if (flag & 0x2)
+  if (flag & 0x8)
     printf ("Т ");
   else
     printf ("_ ");
-  if (flag & 0x1)
-    printf ("Е\n");
+  if (flag & 0x10)
+    printf ("Е");
   else
-    printf ("_\n");
+    printf ("_");
   fflush (stdout);
 }

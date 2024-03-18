@@ -2,7 +2,7 @@
 
 int mt_setfgcolor(enum colors color) { 
     char buf[15]; 
-    int len = sprintf(buf, "\033[3%dm", color); // формирование терминальной управляющей последовательности для установки цвета 
+    int len = sprintf(buf, "\E[38:5;%dm", color); // формирование терминальной управляющей последовательности для установки цвета 
  
     int tty = open("/dev/tty", O_RDWR); // открытие терминала 
     if (tty == -1) { 

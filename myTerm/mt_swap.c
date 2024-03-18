@@ -1,7 +1,7 @@
 #include <mySimpleComputer.h>
 #include <myTerm.h>
 
-void swap(int *x, int* y)
+void mt_swap(int *x, int* y)
 {
   int tmp = *x;
   *x = *y;

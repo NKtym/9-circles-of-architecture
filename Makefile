@@ -1,4 +1,4 @@
-all: mySimpleComputer/sc_lib.a console/cons_lib.a myTerm/mt_lib.a console/console
+all: mySimpleComputer/sc_lib.a myTerm/mt_lib.a console/cons_lib.a console/console
 
 test: console/test.o
 	gcc console/test.o -o console/test
@@ -13,6 +13,11 @@ console/console: console/console.c mySimpleComputer/*.c myTerm/*.c console/print
 
 console/cons_lib.a: console/print*.o
 	ar rcs console/cons_lib.a console/print*.o
+
+console/print*.o: console/print*.c
+	gcc -g -c -I include/ console/print*.c mySimpleComputer/sc_lib.a myTerm/mt_lib.a
+	cp *.o console
+	rm *.o
 	
 myTerm/mt_lib.a: myTerm/*.o
 	ar rcs myTerm/mt_lib.a myTerm/*.o
@@ -20,13 +25,8 @@ myTerm/mt_lib.a: myTerm/*.o
 mySimpleComputer/sc_lib.a: mySimpleComputer/sc*.o
 	ar rcs mySimpleComputer/sc_lib.a mySimpleComputer/sc*.o
 
-console/print*.o: console/print*.c
-	gcc -g -c -I include/ console/print*.c
-	cp *.o console
-	rm *.o
-
 myTerm/*.o: myTerm/*.c
-	gcc -g -c -I include/ myTerm/mt*.c
+	gcc -g -c -I include/ myTerm/*.c
 	cp *.o myTerm
 	rm *.o
 
@@ -43,9 +43,9 @@ clean:
 	rm myTerm/*.o
 	rm myTerm/*.a
 	rm console/*.o
-	rm console/concole
+	rm console/console
 
 .PHONY: run
 
 run:
-	./console/pr01
+	./console/console

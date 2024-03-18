@@ -2,7 +2,7 @@
 
 int mt_gotoXY(int x, int y) { 
     char buf[15]; 
-    int len = sprintf(buf, "\033[%d;%dH", x, y); // формирование терминальной управляющей последовательности 
+    int len = sprintf(buf, "\E[%d;%dH", x, y); // формирование терминальной управляющей последовательности 
  
     int tty = open("/dev/tty", O_RDWR); // открытие терминала 
     if (tty == -1) { 

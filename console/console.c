@@ -9,7 +9,7 @@ main ()
       int cols, rows;
       if (mt_getscreensize (&rows, &cols) != 0)
         return -1;
-      if (cols < 150 && rows < 35)
+      if (cols < 100 && rows < 20)
         return -1;
       sc_memoryInit ();
       sc_regInit ();
@@ -17,7 +17,7 @@ main ()
       sc_icounterInit ();
       for (int i = 0; i < 128; i++)
         {
-          if (sc_memorySet (i, 10 * i) != 0)
+          if (sc_memorySet (i, i+1280) != 0)
             {
               return -1;
             }
