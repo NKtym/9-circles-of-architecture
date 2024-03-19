@@ -4,7 +4,7 @@
 void
 printAccumulator (void)
 {
-  mt_gotoXY (1, 150);
-  printf ("%d\n", accum);
-  fflush(stdout);
+  mt_gotoXY (2, 140);
+  printf ("Accum: %d", accum);
+  fflush (stdout);
 }

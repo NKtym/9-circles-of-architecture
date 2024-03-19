@@ -8,9 +8,6 @@ test.o: console/test.c
 console/console: console/console.c mySimpleComputer/*.c myTerm/*.c console/print*.c
 	gcc -g -I include/ -o console/console console/console.c mySimpleComputer/sc*.c myTerm/mt*.c console/print*.c
 
-#console/console: console/console.c mySimpleComputer/sc_lib.a myTerm/mt_lib.a console/cons_lib.a
-#	gcc -g -Wall -I include/ -o console/console console/console.c mySimpleComputer/sc_lib.a myTerm/mt_lib.a console/cons_lib.a
-
 console/cons_lib.a: console/print*.o
 	ar rcs console/cons_lib.a console/print*.o
 

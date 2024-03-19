@@ -3,7 +3,8 @@
 void
 printFlags (void)
 {
-  mt_gotoXY (20, 200);
+  mt_gotoXY (2, 160);
+  printf ("Register flags:  ");
   if (flag & 0x1)
     printf ("П ");
   else
