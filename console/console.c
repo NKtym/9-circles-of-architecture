@@ -43,14 +43,14 @@ main ()
       printDecodedCommand (ram[0]);
       printBigCell(0);
       printKey();
-      signal (SIGALRM, IRC);//
-      signal (SIGUSR1, usrsig_handler);//
-      for (int i = 0; i < 128; i++){
-        printTerm (i, 1);
+      signal (SIGALRM, IRC);
+      signal (SIGUSR1, usrsig_handler);
+      printTerm (0, 1);
+      while(1){
         if(printReadkey()!=0){
           return 0;
         }
-        alarm (1);//
+        alarm (1);
       }
       fclose(font_file);
       return 0;

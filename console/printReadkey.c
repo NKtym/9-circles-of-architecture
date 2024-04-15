@@ -109,13 +109,14 @@ int printReadkey(){
             break;
         }
         if(key == KEY_F5){
+            tmp = 0;
             mt_gotoXY (3,125);
             printf("    ");
             fflush (stdout);
             mt_gotoXY (3,125);
-            rk_mytermregime(1,1,0,1,1);
-            rk_readvalue(&tmp,5);
             flag = 1;
+            rk_readvalue(&tmp,4);
+            fflush (stdout);
             if(sc_accumulatorSet (tmp)!=0)
                 break;
             rk_mytermrestore();
@@ -143,6 +144,8 @@ int printReadkey(){
             printBigCell(cnt);
             sc_icounterSet(cnt);
             printCounters();
+            printCommand();
+            printTerm (cnt, 1);
             mt_gotoXY (x,y);
             fflush (stdout);
         }
@@ -157,6 +160,8 @@ int printReadkey(){
             printBigCell(cnt);
             sc_icounterSet(cnt);
             printCounters();
+            printCommand();
+            printTerm (cnt, 1);
             mt_gotoXY (x,y);
             fflush (stdout);
         }
@@ -171,6 +176,8 @@ int printReadkey(){
             printBigCell(cnt);
             sc_icounterSet(cnt);
             printCounters();
+            printCommand();
+            printTerm (cnt, 1);
             mt_gotoXY (x,y);
             fflush (stdout);
         }
@@ -185,6 +192,8 @@ int printReadkey(){
             printBigCell(cnt);
             sc_icounterSet(cnt);
             printCounters();
+            printCommand();
+            printTerm (cnt, 1);
             mt_gotoXY (x,y);
             fflush (stdout);
         }

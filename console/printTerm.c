@@ -7,6 +7,15 @@ printTerm (int address, int input)
   char* header = "IN--OUT";
   bc_box(20, 122, 24, 138,GREEN,BLACK,header,GREEN,BLACK);
   fflush (stdout);
+  mt_gotoXY (21, 123);
+  printf("               ");
+  fflush (stdout);
+  mt_gotoXY (22, 123);
+  printf("               ");
+  fflush (stdout);
+  mt_gotoXY (23, 123);
+  printf("               ");
+  fflush (stdout);
   int tmp[3];
   int addr[3];
   tmp[1] = ram[address];

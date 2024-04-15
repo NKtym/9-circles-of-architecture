@@ -5,7 +5,10 @@ void
 printDecodedCommand (int value)
 {
   char* header = "Decoded";
-  bc_box(23, 2, 25, 48,GREEN,BLACK,header,GREEN,BLACK);
+  bc_box(23, 2, 25, 53,GREEN,BLACK,header,GREEN,BLACK);
+  fflush (stdout);
+  mt_gotoXY (24, 3);
+  printf("                                                  ");
   fflush (stdout);
   mt_gotoXY (24, 3);
   printf ("10: %d | ", value);

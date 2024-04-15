@@ -2,31 +2,33 @@
 
 int ALU(int command, int operand)
 {
-
 	switch (command) {
-		case 0x30: /* ADD */
+		case 30:
 			accum += ram[operand];
+			printAccumulator();
 			break;
 			
-		case 0x31: /* SUB */
+		case 31:
 			accum -= ram[operand];
+			printAccumulator();
 			break;
 		
-		case 0x32: /* DIV */
+		case 32:
 			if (ram[operand] != 0)
 				accum /= ram[operand];
 			else {
 				sc_regSet(1, 1);
 				return -1;
 			}
+			printAccumulator();
 			break;
 
-        case 0x33: /* MUL */
+        case 33:
 			accum *= ram[operand];
+			printAccumulator();
 			break;
 	}
 	if ((accum > 0x7FFF) || (accum < 0)) {
-		accum &= 0x7FFF;
 		sc_regSet(0, 1);
 	}
 	else

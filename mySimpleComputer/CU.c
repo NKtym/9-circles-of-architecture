@@ -1,4 +1,5 @@
 #include "mySimpleComputer.h"
+#include "myReadkey.h"
 
 void CU(){
     int operand,read,sign,command;
@@ -44,7 +45,7 @@ void CU(){
                     printCell(operand,GREEN,BLACK);
                     break;
                     
-                case 11: /* WRITE ?*/                    
+                case 11:                   
                     mt_gotoXY (21, 123);
                     printf("             ");
                     fflush(stdout);
@@ -57,41 +58,47 @@ void CU(){
                     mt_gotoXY (21, 123);
                     printf("Вывод ram:");
                     fflush(stdout);
-                    rk_readvalue(&read,4);
-                    printTerm(read,1);
+                    mt_gotoXY (22, 123);
+                    printf("+%04x",ram[operand]);
+                    fflush(stdout);
                     break;
                 
-                case 20: /* LOAD */
-                    accum = ram[operand];
+                case 20:
+                    sc_accumulatorSet(ram[operand]);
+                    printAccumulator();
                     break;
                 
-                case 21: /* STORE */
-                    ram[operand] = accum;
+                case 21:
+                    sc_memorySet(operand,accum);
+                    printCell(operand,GREEN,BLACK);
                     break;
                 
-                case 40: /* JUMP */
-                    cnt_command = operand;
+                case 40:
+                    sc_icounterSet(operand-1);
+                    printCounters();
                     break;
                 
                 case 41: /* JNEG */
-                    if (((accum >> 14) & 1) == 1)
-                        cnt_command = operand;
+                    if (accum<0)
+                        sc_icounterSet(operand-1);
+                    printCounters();
                     break;
                     
-                case 42: /* JZ */
+                case 42:
                     if (accum == 0)
-                        cnt_command = operand;
+                        sc_icounterSet(operand-1);
+                    printCounters();
                     break;
                 
                 case 43:
                     sc_regSet(3, 1);
                     printFlags ();
                     break;
-                case 53://!
+                case 53:
                     sc_accumulatorSet(ram[operand]|accum);
                     printAccumulator();
                     break;
-                case 54://!
+                case 54:
                     sc_accumulatorSet(ram[operand]^accum);
                     printAccumulator();
                     break;

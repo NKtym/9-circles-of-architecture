@@ -7,6 +7,9 @@ printCommand (void)
   char* header = "Command";
   bc_box(5,122,7,132,GREEN,BLACK,header,GREEN,BLACK);
   fflush (stdout);
+  mt_gotoXY (6, 124);
+  printf("        ");
+  fflush (stdout);
   int *sign = malloc (sizeof (int));
   int *command = malloc (sizeof (int));
   int *operand = malloc (sizeof (int));
