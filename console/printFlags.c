@@ -3,8 +3,10 @@
 void
 printFlags (void)
 {
-  mt_gotoXY (2, 160);
-  printf ("Register flags:  ");
+  char* header = "Flags";
+  bc_box(2, 136, 4, 146,GREEN,BLACK,header,GREEN,BLACK);
+  fflush (stdout);
+  mt_gotoXY (3, 137);
   if (flag & 0x1)
     printf ("П ");
   else

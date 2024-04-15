@@ -6,7 +6,7 @@ sc_commandDecode (int value, int *sign, int *command, int *operand)
   if (sc_commandValidate (value) == -1)
     return -1;
   *sign = SIGN_COMMAND;
-  *command = value >> 8;
+  *command = value >> 7;
   *operand = value & 0x7f;
   return 0;
 }

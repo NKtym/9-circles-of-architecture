@@ -10,7 +10,7 @@
 #include <unistd.h>
 
 enum colors
-{ // Перечислимый тип, описывающий цвета терминала
+{
   BLACK = 30,
   RED,
   GREEN,

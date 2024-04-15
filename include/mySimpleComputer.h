@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <signal.h>
 
 #define MEMORYSIZE 127
 #define EMPTYMEMORY 0
@@ -81,3 +82,11 @@ void printCounters (void);
 void printTerm (int address, int input);
 
 void printCommand (void);
+
+void IRC(int signum);
+
+void usrsig_handler(int sig);
+
+void CU();
+
+int ALU(int command, int operand);
