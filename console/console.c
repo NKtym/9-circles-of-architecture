@@ -41,6 +41,7 @@ main ()
       printFlags ();
       printCommand ();
       printDecodedCommand (ram[0]);
+      printCache();
       printBigCell(0);
       printKey();
       signal (SIGALRM, IRC);

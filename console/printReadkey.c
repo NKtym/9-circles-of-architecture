@@ -48,7 +48,7 @@ int printReadkey(){
         if(key == KEY_L){
             int ram_file;
             char buf[15];
-            mt_gotoXY (28,2);
+            mt_gotoXY (32,2);
             printf("Введите имя файла для сохранить:");
             rk_mytermregime(0,0,10,1,1);
             scanf("%s",buf);
@@ -58,7 +58,7 @@ int printReadkey(){
             for (int i = 0; i < 128; ++i) { 
                 write(ram_file, &ram[i], sizeof(int));
             }
-            mt_gotoXY (28,2);
+            mt_gotoXY (32,2);
             mt_setdefaultcolor();
             for(int i=0; i<60+sizeof(buf);i++){
                 printf(" ");
@@ -66,6 +66,12 @@ int printReadkey(){
             fflush(stdout);
             mt_setfgcolor (GREEN);
             mt_setbgcolor (BLACK + 10);
+            cnt_command = 0;
+            printBigCell(cnt_command);
+            printCounters();
+            printCommand();
+            printDecodedCommand(ram[cnt_command]);
+            printTerm(0,1);
             close(ram_file);
             rk_mytermregime(1,1,0,0,1);
             break;
@@ -73,20 +79,24 @@ int printReadkey(){
         if(key == KEY_S){
             int ram_file;
             char buf[200];
-            mt_gotoXY (28,2);
+            mt_gotoXY (32,2);
             printf("Введите имя файла для загрузки:");
             rk_mytermregime(0,0,10,1,1);
             scanf("%s",buf);
             strcat(buf,".bin");
             fflush(stdout);
             ram_file = open(buf, O_RDONLY);
-            for (int i = 0; i < 128; ++i) { 
+            for (int i = 0; i < 128; i++){
+                if (sc_memorySet (i, 0) != 0)
+                    return -1;
+            }
+            for (int i = 0; i < 128; i++) { 
                 read(ram_file, &ram[i], sizeof(int)); 
             }
             for (int i = 0; i < 128; i++)
                 printCell (i, GREEN, BLACK + 10);
             fflush(stdout);
-            mt_gotoXY (28,2);
+            mt_gotoXY (32,2);
             mt_setdefaultcolor();
             for(int i=0; i<58+sizeof(buf);i++){
                 printf(" ");
@@ -94,6 +104,12 @@ int printReadkey(){
             fflush(stdout);
             mt_setfgcolor (GREEN);
             mt_setbgcolor (BLACK + 10);
+            cnt_command = 0;
+            printBigCell(cnt_command);
+            printCounters();
+            printCommand();
+            printDecodedCommand(ram[cnt_command]);
+            printTerm(0,1);
             close(ram_file);
             rk_mytermrestore();
             break;

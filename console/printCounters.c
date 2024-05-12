@@ -11,6 +11,9 @@ printCounters (void)
   printf ("     ");
   fflush (stdout);
   mt_gotoXY (6, 140);
-  printf ("%d", cnt_command);
+  if(cnt_command>-1) 
+    printf ("%d", cnt_command);
+  else
+    printf ("%d", cnt_command+1);
   fflush (stdout);
 }

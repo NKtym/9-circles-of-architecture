@@ -1,4 +1,4 @@
-all: mySimpleComputer/sc_lib.a myTerm/mt_lib.a myBigChars/bc_lib.a myReadKey/rk_lib.a console/cons_lib.a console/font console/console
+all: mySimpleComputer/sc_lib.a myTerm/mt_lib.a myBigChars/bc_lib.a myReadKey/rk_lib.a console/cons_lib.a simpleassembler/*.o simpleassembler/assmb simplebasic/*.o simplebasic/basic console/font console/console
 
 test: console/test.o
 	gcc console/test.o -o console/test
@@ -6,7 +6,13 @@ test.o: console/test.c
 	gcc -c console/test.c
 
 console/console: console/console.c mySimpleComputer/*.c myTerm/*.c myBigChars/*.c myReadKey/*.c console/print*.c 
-	gcc -g -I include/ -o console/console console/console.c mySimpleComputer/sc*.c mySimpleComputer/usrsighandler.c mySimpleComputer/CU.c mySimpleComputer/IRC.c mySimpleComputer/ALU.c myTerm/mt*.c myBigChars/bc*.c myReadKey/rk*.c console/print*.c
+	gcc -g -I include/ -o console/console console/console.c mySimpleComputer/sc*.c mySimpleComputer/check_cache.c mySimpleComputer/update_cache.c mySimpleComputer/usrsighandler.c mySimpleComputer/CU.c mySimpleComputer/IRC.c mySimpleComputer/ALU.c myTerm/mt*.c myBigChars/bc*.c myReadKey/rk*.c console/print*.c
+
+simplebasic/basic: simplebasic/*.c mySimpleComputer/*.c
+	gcc -g -I include/ -o simplebasic/basic mySimpleComputer/sc*.c simplebasic/*.c
+
+simpleassembler/assmb: simpleassembler/*.c mySimpleComputer/*.c simpleassembler/*.c
+	gcc -g -I include/ -o simpleassembler/assmb mySimpleComputer/sc*.c simpleassembler/*.c
 
 console/font: console/font.c myBigChars/bc*.c
 	gcc -g -I include/ -o console/font console/font.c myTerm/mt*.c myBigChars/bc*.c
@@ -30,6 +36,17 @@ myTerm/mt_lib.a: myTerm/*.o
 
 mySimpleComputer/sc_lib.a: mySimpleComputer/sc*.o
 	ar rcs mySimpleComputer/sc_lib.a mySimpleComputer/sc*.o
+
+simpleassembler/*.o: simpleassembler/*.c
+	gcc -g -c -I include/ simpleassembler/*.c
+	cp *.o simpleassembler
+	rm *.o
+
+#!!!
+simplebasic/*.o: simplebasic/*.c
+	gcc -g -c -I include/ simplebasic/*.c
+	cp *.o simplebasic
+	rm *.o
 
 myReadKey/*.o: myReadKey/rk*.c
 	gcc -g -c -I include/ myReadKey/rk*.c
@@ -58,13 +75,17 @@ clean:
 	rm mySimpleComputer/*.a
 	rm myTerm/*.o
 	rm myTerm/*.a
-	rm console/*.o
 	rm myBigChars/*.o
 	rm myBigChars/*.a
-	rm console/font
-	rm console/console
 	rm myReadKey/*.o
 	rm myReadKey/*.a
+	rm simpleassembler/*.o
+	rm simplebasic/*.o
+	rm console/*.o
+	rm console/font
+	rm console/*.a
+	rm console/console
+
 .PHONY: run
 
 run:

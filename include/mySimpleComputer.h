@@ -27,6 +27,16 @@
 #define OPERAND_MIN 0
 #define OPERAND_MAX 0x7F
 
+#define CACHE_LINE 10
+#define CACHE_LINES 5
+
+struct caches
+{
+  int line[CACHE_LINE];
+  int number;
+  int priority;
+};
+
 extern int *ram;
 
 extern int accum;
@@ -34,6 +44,8 @@ extern int accum;
 extern int cnt_command;
 
 extern int flag;
+
+extern struct caches cache[CACHE_LINES];
 
 int sc_memoryInit (void);
 
@@ -71,6 +83,8 @@ int sc_commandValidate (int command);
 
 void printCell (int address, enum colors fg, enum colors bg);
 
+void printBigCell(int cnt);
+
 void printFlags (void);
 
 void printDecodedCommand (int value);
@@ -90,3 +104,9 @@ void usrsig_handler(int sig);
 void CU();
 
 int ALU(int command, int operand);
+
+void printCache (void);
+
+int check_cache(int operand);
+
+void update_cache(int operand);
