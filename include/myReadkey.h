@@ -17,7 +17,8 @@ enum keys{
     KEY_L,
     KEY_S,
     KEY_I,
-    KEY_R
+    KEY_R,
+    KEY_T
 };
 
 extern struct termios saved_termios;

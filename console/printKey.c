@@ -20,6 +20,6 @@ void printKey(){
     printf("F6 - update counter");
     fflush (stdout);
     mt_gotoXY (26, 143);
-    printf("r - run");
+    printf("r - run t - run 1 comm");
     fflush (stdout);
 }

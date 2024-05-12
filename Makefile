@@ -6,7 +6,7 @@ test.o: console/test.c
 	gcc -c console/test.c
 
 console/console: console/console.c mySimpleComputer/*.c myTerm/*.c myBigChars/*.c myReadKey/*.c console/print*.c 
-	gcc -g -I include/ -o console/console console/console.c mySimpleComputer/sc*.c mySimpleComputer/check_cache.c mySimpleComputer/update_cache.c mySimpleComputer/usrsighandler.c mySimpleComputer/CU.c mySimpleComputer/IRC.c mySimpleComputer/ALU.c myTerm/mt*.c myBigChars/bc*.c myReadKey/rk*.c console/print*.c
+	gcc -g -I include/ -o console/console console/console.c mySimpleComputer/sc*.c mySimpleComputer/check_cache.c mySimpleComputer/update_cache.c mySimpleComputer/usrsighandler.c mySimpleComputer/CU.c mySimpleComputer/IRC.c mySimpleComputer/T_RUN.c mySimpleComputer/ALU.c myTerm/mt*.c myBigChars/bc*.c myReadKey/rk*.c console/print*.c
 
 simplebasic/basic: simplebasic/*.c mySimpleComputer/*.c
 	gcc -g -I include/ -o simplebasic/basic mySimpleComputer/sc*.c simplebasic/*.c

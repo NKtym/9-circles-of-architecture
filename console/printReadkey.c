@@ -124,6 +124,12 @@ int printReadkey(){
             printFlags();
             break;
         }
+        if(key == KEY_T){
+            sc_regSet(3,0);
+            printFlags();
+            raise(SIGUSR2);
+            break;
+        }
         if(key == KEY_F5){
             tmp = 0;
             mt_gotoXY (3,125);

@@ -46,6 +46,7 @@ main ()
       printKey();
       signal (SIGALRM, IRC);
       signal (SIGUSR1, usrsig_handler);
+      signal (SIGUSR2, T_RUN);
       printTerm (0, 1);
       while(1){
         if(printReadkey()!=0){

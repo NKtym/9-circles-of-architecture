@@ -52,6 +52,9 @@ int rk_readkey(enum keys *key) {
         case 'r':
             *key = KEY_R;
             break;
+        case 't':
+            *key = KEY_T;
+            break;
         default: 
             return -1; // Неизвестная клавиша 
     } 

@@ -101,6 +101,8 @@ void IRC(int signum);
 
 void usrsig_handler(int sig);
 
+void T_RUN(int sig);
+
 void CU();
 
 int ALU(int command, int operand);
